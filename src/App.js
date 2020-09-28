@@ -1,5 +1,6 @@
 import React from "react";
 import TodoList from "./components/TodoList";
+import "./components/Todo.css";
 
 class App extends React.Component {
   // you will need a place to store your state in this component.
@@ -27,7 +28,7 @@ class App extends React.Component {
     this.setState({
       tasks: this.state.tasks.map((item) => {
         return taskId === item.id
-          ? { ...item, purchased: !item.purchased }
+          ? { ...item, completed: !item.completed }
           : item;
       }),
     });
@@ -47,7 +48,7 @@ class App extends React.Component {
   clearCompleted = (e) => {
     e.preventDefault();
     this.setState({
-      tasks: this.state.tasks.filter((item) => !item.purchased),
+      tasks: this.state.tasks.filter((item) => !item.completed),
     });
   };
 
