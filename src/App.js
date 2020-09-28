@@ -1,6 +1,7 @@
 import React from "react";
 import TodoList from "./components/TodoList";
 import "./components/Todo.css";
+import TodoForm from "./components/TodoForm";
 
 class App extends React.Component {
   // you will need a place to store your state in this component.
@@ -61,6 +62,7 @@ class App extends React.Component {
           toggleTask={this.toggleTask}
           clearCompleted={this.clearCompleted}
         />
+        <TodoForm addTask={this.addTask} />
       </div>
     );
   }
