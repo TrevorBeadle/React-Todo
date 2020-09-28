@@ -25,6 +25,10 @@ class App extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.setState({ tasks: JSON.parse(localStorage.getItem("tasks")) });
+  }
+
   toggleTask = (taskId) => {
     this.setState({
       tasks: this.state.tasks.map((item) => {
@@ -35,22 +39,31 @@ class App extends React.Component {
     });
   };
 
+  updateLocalStorage = () =>
+    localStorage.setItem("tasks", JSON.stringify(this.state.tasks));
+
   addTask = (e, item) => {
     const newTask = {
       task: item,
       id: Date.now(),
       completed: false,
     };
-    this.setState({
-      tasks: [...this.state.tasks, newTask],
-    });
+    this.setState(
+      {
+        tasks: [...this.state.tasks, newTask],
+      },
+      this.updateLocalStorage
+    );
   };
 
   clearCompleted = (e) => {
     e.preventDefault();
-    this.setState({
-      tasks: this.state.tasks.filter((item) => !item.completed),
-    });
+    this.setState(
+      {
+        tasks: this.state.tasks.filter((item) => !item.completed),
+      },
+      this.updateLocalStorage
+    );
   };
 
   render() {
