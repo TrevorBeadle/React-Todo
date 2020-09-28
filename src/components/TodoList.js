@@ -9,7 +9,6 @@ export default function TodoList(props) {
       {props.tasks.map((task) => {
         return <Todo key={task.id} task={task} toggleTask={props.toggleTask} />;
       })}
-      <button onClick={props.clearCompleted}>Clear Completed</button>
     </div>
   );
 }
