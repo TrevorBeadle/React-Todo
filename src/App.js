@@ -43,6 +43,7 @@ class App extends React.Component {
     localStorage.setItem("tasks", JSON.stringify(this.state.tasks));
 
   addTask = (e, item) => {
+    e.preventDefault();
     const newTask = {
       task: item,
       id: Date.now(),
@@ -60,7 +61,7 @@ class App extends React.Component {
     e.preventDefault();
     this.setState(
       {
-        tasks: this.state.tasks.filter((item) => !item.completed),
+        tasks: this.state.tasks.filter((task) => !task.completed),
       },
       this.updateLocalStorage
     );
